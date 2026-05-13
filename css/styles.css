@@ -805,6 +805,264 @@ span {
 }
 
 
+/* ── Experience Section ── */
+.experience {
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.experience::before {
+    content: '';
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    width: 28rem;
+    height: 28rem;
+    background: radial-gradient(circle, rgba(14, 255, 255, 0.04) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: expFloat 9s ease-in-out infinite;
+}
+
+.experience::after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    right: 6%;
+    width: 22rem;
+    height: 22rem;
+    background: radial-gradient(circle, rgba(14, 255, 255, 0.03) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: expFloat 11s ease-in-out infinite reverse;
+}
+
+@keyframes expFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-1.5rem, -2rem) scale(1.08); }
+}
+
+.exp-timeline {
+    position: relative;
+    padding: 3rem 2rem 1rem;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.exp-icon {
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 1.4rem;
+    background: rgba(14, 255, 255, 0.08);
+    border: .14rem solid rgba(14, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-color);
+    font-size: 2.8rem;
+    box-shadow: 0 0 2rem rgba(14, 255, 255, 0.15), 0 1rem 2.2rem rgba(0, 0, 0, 0.35);
+    margin-left: 0.4rem;
+    margin-bottom: 2rem;
+    animation: iconPulse 3s ease-in-out infinite;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.exp-icon:hover {
+    transform: scale(1.1) rotate(-4deg);
+    box-shadow: 0 0 3rem rgba(14, 255, 255, 0.35), 0 1rem 2.2rem rgba(0, 0, 0, 0.35);
+}
+
+.exp-line {
+    position: absolute;
+    top: 7.2rem;
+    left: 3.2rem;
+    width: .22rem;
+    height: calc(100% - 7rem);
+    background: linear-gradient(180deg, var(--main-color), rgba(14, 255, 255, 0.4), rgba(14, 255, 255, 0.08));
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.exp-line::after {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(180deg, transparent, rgba(14, 255, 255, 0.7), transparent);
+    animation: lineTravel 3s ease-in-out infinite;
+}
+
+.exp-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.exp-entry {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1.2rem;
+    opacity: 0;
+    transform: translateX(-2.4rem);
+    animation: eduSlideIn .7s ease forwards;
+    animation-delay: .15s;
+}
+
+.exp-dot {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    background: var(--main-color);
+    box-shadow: 0 0 0 .6rem rgba(14, 255, 255, 0.08), 0 0 1.2rem rgba(14, 255, 255, 0.45);
+    margin-left: 2.6rem;
+    margin-top: .4rem;
+    animation: dotPulse 2.5s ease-in-out infinite;
+    position: relative;
+}
+
+.exp-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: .15rem solid rgba(14, 255, 255, 0.25);
+    transform: translate(-50%, -50%);
+    animation: dotRing 2.5s ease-in-out infinite;
+}
+
+.exp-content {
+    background: rgba(255, 255, 255, 0.03);
+    border: .12rem solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.2rem;
+    padding: 2.4rem 2.6rem;
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease, background .35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.exp-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(14, 255, 255, 0.06), transparent);
+    transform: skewX(-20deg);
+    transition: left .6s ease;
+    pointer-events: none;
+}
+
+.exp-content:hover::before {
+    left: 125%;
+}
+
+.exp-content:hover {
+    transform: translateY(-4px);
+    border-color: rgba(14, 255, 255, 0.25);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.3), 0 0 1.5rem rgba(14, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.exp-content h3 {
+    font-size: 2.2rem;
+    margin-bottom: .4rem;
+    transition: color .3s ease;
+}
+
+.exp-content:hover h3 {
+    color: var(--main-color);
+}
+
+.exp-company {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.6rem;
+    color: #e8ecf5;
+    font-weight: 500;
+    margin-bottom: .4rem;
+}
+
+.exp-company i {
+    color: var(--main-color);
+    font-size: 1.8rem;
+}
+
+.exp-period {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.5rem;
+    color: #f3d27f;
+    margin-bottom: 1.6rem;
+}
+
+.exp-period i {
+    font-size: 1.6rem;
+}
+
+.exp-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.6rem 0;
+}
+
+.exp-bullets li {
+    position: relative;
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #cdd3df;
+    margin-bottom: .8rem;
+}
+
+.exp-bullets li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: var(--main-color);
+    font-size: 1.4rem;
+}
+
+.exp-bullets li strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+}
+
+.exp-tag {
+    display: inline-block;
+    padding: .4rem 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--main-color);
+    background: rgba(14, 255, 255, 0.06);
+    border: .1rem solid rgba(14, 255, 255, 0.15);
+    border-radius: 2rem;
+    letter-spacing: .02em;
+    transition: background .3s ease, border-color .3s ease, transform .3s ease;
+}
+
+.exp-tag:hover {
+    background: rgba(14, 255, 255, 0.12);
+    border-color: rgba(14, 255, 255, 0.35);
+    transform: translateY(-2px);
+}
+
 /* ── Portfolio Section ── */
 .portfolio {
     background: var(--second-bg-color);
@@ -1222,7 +1480,8 @@ span {
     }
 
     .skills,
-    .education {
+    .education,
+    .experience {
         padding-bottom: 7rem;
     }
 

@@ -89,7 +89,7 @@ ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 // typed js
 
 const typed = new Typed('.multiple-text', {
-    strings: ['CS Graduate 2026', 'OCI GenAI Certified', 'ServiceNow CSA'],
+    strings: ['Software Dev Intern',"CS Graduate 2026", 'OCI GenAI Certified', 'ServiceNow CSA'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
