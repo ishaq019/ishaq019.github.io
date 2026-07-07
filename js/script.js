@@ -12,7 +12,7 @@ menuIcon.onclick = () => {
 let sections = document.querySelectorAll("section");
 let navLinks = document.querySelectorAll("header nav a");
 
-window.onscroll = () => {
+function setActiveNavLink() {
   sections.forEach((sec) => {
     let top = window.scrollY;
     let offset = sec.offsetTop - 150;
@@ -22,12 +22,17 @@ window.onscroll = () => {
     if (top >= offset && top < offset + height) {
       navLinks.forEach((links) => {
         links.classList.remove("active");
-        document
-          .querySelector("header nav a[href*=" + id + "]")
-          .classList.add("active");
+        const activeLink = document.querySelector("header nav a[href='#" + id + "']");
+        if (activeLink) activeLink.classList.add("active");
       });
     }
   });
+}
+
+setActiveNavLink();
+
+window.onscroll = () => {
+  setActiveNavLink();
 
   // Sticky navbar
 
@@ -89,7 +94,7 @@ ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 // typed js
 
 const typed = new Typed('.multiple-text', {
-    strings: ['Software Dev Intern',"CS Graduate 2026", 'OCI GenAI Certified', 'ServiceNow CSA'],
+    strings: ['Full Stack Intern', 'MERN Developer', 'Electron.js Developer', 'OCI GenAI Certified'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
