@@ -94,7 +94,7 @@ ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 // typed js
 
 const typed = new Typed('.multiple-text', {
-    strings: ['Full Stack Intern', 'MERN Developer', 'Electron.js Developer', 'OCI GenAI Certified'],
+    strings: ['Full Stack Intern', 'MERN Developer', 'OCI GenAI Certified'],
     typeSpeed: 100,
     backSpeed: 100,
     backDelay: 1000,
