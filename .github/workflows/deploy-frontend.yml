@@ -37,8 +37,20 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify deployable artifact
+        shell: bash
+        run: |
+          test -f dist/index.html
+          test -f dist/CNAME
+          test "$(cat dist/CNAME)" = "syedishaq.me"
+          if grep -qE 'src="/src/.*\.(jsx|tsx)"' dist/index.html; then
+            echo "Build output still references an uncompiled JSX/TSX source file."
+            exit 1
+          fi
+          grep -qE 'src="/assets/.*\.js"' dist/index.html
+
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
