@@ -1,6 +1,8 @@
 export const profile = {
   name: "Syed Ishaq",
-  role: "MERN / React Developer",
+  role: "Full-Stack & AI Engineer",
+  summary:
+    "Full Stack Intern at Leap Robots and creator of CareerSetu. I build complete products end to end — React & TypeScript front-ends, FastAPI & Node.js back-ends, and AI features powered by retrieval-augmented generation.",
   email: "syedishaq0000786@gmail.com",
   phone: "+91 70753 20283",
   phoneHref: "+917075320283",
@@ -10,8 +12,12 @@ export const profile = {
   resume: "/assets/syed-ishaq-resume.pdf",
 };
 
+export const about =
+  "I'm a final-year Computer Science student and a full-stack engineer who likes shipping complete products — from React and TypeScript interfaces to FastAPI and Node.js services. Lately my focus is applied AI: retrieval-augmented generation, LLM integration, and grounded features that actually help people, like my flagship project CareerSetu. I'm looking for new-grad software roles where I can own real features from idea to production.";
+
 export const navigation = [
   { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
@@ -20,31 +26,34 @@ export const navigation = [
 
 export const skillGroups = [
   {
-    title: "Programming Languages",
-    skills: ["JavaScript (ES6+)", "Python", "SQL"],
+    title: "Languages",
+    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "SQL"],
   },
   {
-    title: "Frontend Technologies",
-    skills: ["HTML5", "CSS3", "React.js", "React Hooks", "Context API", "Axios", "Tailwind CSS"],
+    title: "Frontend",
+    skills: ["React.js", "React Hooks", "Context API", "HTML5", "CSS3", "Tailwind CSS", "Axios"],
   },
   {
-    title: "Backend Technologies",
-    skills: ["Node.js", "Express.js", "FastAPI", "RESTful APIs", "JSON", "JSON Web Token (JWT)", "Zod", "Multer", "NLTK"],
+    title: "Backend & APIs",
+    skills: ["Node.js", "Express.js", "FastAPI", "RESTful APIs", "JWT", "OAuth 2.0", "Electron.js"],
   },
   {
-    title: "Database and Tools",
-    skills: ["MongoDB", "Mongoose", "Git", "GitHub", "Postman", "npm", "Vercel", "GitHub Pages", "Electron.js"],
+    title: "AI & Data",
+    skills: ["Retrieval-Augmented Generation", "LLM Integration", "LangChain", "ChromaDB", "Prompt Engineering"],
   },
   {
-    title: "Relevant Coursework",
+    title: "Databases & Tools",
+    skills: ["MongoDB", "PostgreSQL", "SQLAlchemy", "Mongoose", "Docker", "Git", "GitHub", "Postman", "Vercel"],
+  },
+  {
+    title: "CS Foundations",
     skills: [
-      "Data Structures and Algorithms",
-      "Object-Oriented Programming (OOP)",
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming",
       "Operating Systems",
-      "Database Management Systems (DBMS)",
+      "Database Management Systems",
       "Computer Networks",
-      "Software Engineering",
-      "Software Development Life Cycle (SDLC)",
+      "Software Engineering & SDLC",
     ],
   },
 ];
@@ -59,9 +68,9 @@ export const experience = [
     description:
       "Building and testing web-to-desktop product modules that connect software with robotics hardware.",
     highlights: [
-      "Converting web application workflows into desktop modules using Electron.js, Node.js, and JavaScript.",
-      "Debugging UI behavior, runtime issues, application flow, and hardware communication.",
-      "Working with microcontrollers through serial communication and backend device-control logic.",
+      "Migrating a production web application into a cross-platform desktop app with Electron.js, Node.js, and JavaScript — development, packaging, and functional testing.",
+      "Writing Node.js backend control logic that talks to microcontrollers and hardware over serial communication, so users can operate connected devices from the desktop app.",
+      "Debugging UI behavior, runtime issues, and application flow across the desktop build.",
     ],
     technologies: ["Electron.js", "Node.js", "JavaScript", "Serial Communication", "Testing"],
   },
@@ -75,8 +84,8 @@ export const experience = [
       "Developed and maintained MERN application features, backend workflows, and REST APIs.",
     highlights: [
       "Built features with React.js, Node.js, Express.js, MongoDB, and JavaScript.",
-      "Worked on asynchronous file operations, uploads, and image-processing workflows.",
-      "Contributed to code reviews, debugging, testing, and issue resolution.",
+      "Implemented backend modules for asynchronous programming, file-system operations, multipart uploads, and image-processing workflows.",
+      "Ran code reviews and debugging across testing cycles, resolving defects to improve quality and stability.",
     ],
     technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "Multer"],
   },
@@ -104,6 +113,26 @@ export const education = [
 ];
 
 export const projects = [
+  {
+    title: "CareerSetu — AI-Powered Career Intelligence Platform",
+    flagship: true,
+    featured: true,
+    period: "Aug 2026",
+    matchScore: 92,
+    tagline:
+      "Resume-to-job analysis with a deterministic ATS match score, plus AI-generated resumes, cover letters, grounded career chat, and adaptive interview prep.",
+    description:
+      "An AI-powered career intelligence platform with a FastAPI backend and a React + TypeScript frontend. A Retrieval-Augmented Generation pipeline over ChromaDB grounds the career chat and an adaptive interview-prep module with automated answer evaluation. Secured with JWT and Google OAuth 2.0, backed by SQLAlchemy and PostgreSQL, and deployed on Vercel serverless infrastructure.",
+    features: [
+      "Deterministic ATS match score",
+      "AI resume & cover-letter generation",
+      "RAG-grounded career chat",
+      "Adaptive interview prep with auto-evaluation",
+    ],
+    technologies: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "ChromaDB", "SQLAlchemy", "JWT", "OAuth 2.0"],
+    source: "https://github.com/ishaq019/CareerSetu",
+    live: "https://syedishaq.me/CareerSetu/",
+  },
   {
     title: "Digital ID Card Management Platform",
     image: "/assets/projects/digital-id-card.webp",

@@ -1,3 +1,4 @@
+import About from "./components/About";
 import Certifications from "./components/Certifications";
 import Contact from "./components/Contact";
 import Education from "./components/Education";
@@ -17,10 +18,11 @@ export default function App() {
       <Navbar />
       <main id="main-content">
         <Hero />
+        <About />
         <Skills />
         <Experience />
-        <Education />
         <Projects />
+        <Education />
         <Certifications />
         <Contact />
       </main>

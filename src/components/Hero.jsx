@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import {
-  ArrowDown,
-  Download,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { ArrowDown, Download, Mail, Phone } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "./BrandIcons";
 import { profile } from "../data/portfolio";
 
 const roles = [
-  "MERN Stack Developer",
-  "Full Stack Developer",
-  "CS Graduate 2026",
+  "Full-Stack Engineer",
+  "AI & RAG Developer",
+  "React + TypeScript",
+  "FastAPI · Node.js",
 ];
 
 function useTypingText() {
@@ -23,7 +19,7 @@ function useTypingText() {
     const currentRole = roles[roleIndex];
     const completed = characterIndex === currentRole.length;
     const empty = characterIndex === 0;
-    const delay = completed && !deleting ? 1300 : deleting ? 42 : 78;
+    const delay = completed && !deleting ? 1400 : deleting ? 42 : 78;
 
     const timeout = window.setTimeout(() => {
       if (completed && !deleting) {
@@ -47,28 +43,10 @@ function useTypingText() {
 }
 
 const socialLinks = [
-  {
-    label: "GitHub profile",
-    href: profile.github,
-    icon: GitHubIcon,
-    external: true,
-  },
-  {
-    label: "LinkedIn profile",
-    href: profile.linkedin,
-    icon: LinkedInIcon,
-    external: true,
-  },
-  {
-    label: "Send email",
-    href: `mailto:${profile.email}`,
-    icon: Mail,
-  },
-  {
-    label: "Call Syed Ishaq",
-    href: `tel:${profile.phoneHref}`,
-    icon: Phone,
-  },
+  { label: "GitHub profile", href: profile.github, icon: GitHubIcon, external: true },
+  { label: "LinkedIn profile", href: profile.linkedin, icon: LinkedInIcon, external: true },
+  { label: "Send email", href: `mailto:${profile.email}`, icon: Mail },
+  { label: "Call Syed Ishaq", href: `tel:${profile.phoneHref}`, icon: Phone },
 ];
 
 export default function Hero() {
@@ -80,14 +58,17 @@ export default function Hero() {
       <div className="hero-orb hero-orb-two" aria-hidden="true" />
 
       <div className="hero-content">
-        <p className="hero-greeting hero-enter hero-delay-1">Hello, It&apos;s Me</p>
+        <p className="hero-eyebrow hero-enter hero-delay-1">
+          <span className="hero-status-dot" aria-hidden="true" />
+          Open to 2026 new-grad roles
+        </p>
 
         <h1 className="hero-name hero-enter hero-delay-2">
           Syed <span>Ishaq</span>
         </h1>
 
         <p className="hero-role hero-enter hero-delay-3">
-          And I&apos;m a{" "}
+          I build{" "}
           <span className="typed-role" aria-live="polite">
             {typedRole}
           </span>
@@ -95,12 +76,21 @@ export default function Hero() {
         </p>
 
         <p className="hero-summary hero-enter hero-delay-4">
-          Full Stack Intern at <strong>Leap Robots LLP</strong> | B.Tech CSE
-          2026 | Building full-stack web and desktop applications with
-          React.js, Node.js, MongoDB, and Electron.js.
+          {profile.summary}
         </p>
 
-        <div className="hero-socials hero-enter hero-delay-5">
+        <div className="hero-actions hero-enter hero-delay-5">
+          <a href="#projects" className="primary-button">
+            View my work
+            <ArrowDown size={18} aria-hidden="true" />
+          </a>
+          <a href={profile.resume} className="hero-download" download>
+            <Download size={18} aria-hidden="true" />
+            Download CV
+          </a>
+        </div>
+
+        <div className="hero-socials hero-enter hero-delay-6">
           {socialLinks.map(({ label, href, icon: Icon, external }) => (
             <a
               key={label}
@@ -110,26 +100,14 @@ export default function Hero() {
               rel={external ? "noreferrer" : undefined}
               className="hero-social-link"
             >
-              <Icon size={20} aria-hidden="true" />
+              <Icon size={19} aria-hidden="true" />
             </a>
           ))}
         </div>
 
-        <a
-          href={profile.resume}
-          className="hero-download hero-enter hero-delay-6"
-          download
-        >
-          <Download size={19} aria-hidden="true" />
-          Download CV
-        </a>
-
-        <a
-          href="#skills"
-          className="hero-scroll"
-          aria-label="Scroll to skills section"
-        >
-          
+        <a href="#about" className="hero-scroll" aria-label="Scroll to about section">
+          Scroll
+          <ArrowDown size={15} aria-hidden="true" />
         </a>
       </div>
     </section>

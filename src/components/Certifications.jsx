@@ -6,11 +6,12 @@ import { certifications } from "../data/portfolio";
 export default function Certifications() {
   return (
     <section id="certifications" className="section-shell">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="wrap">
         <Reveal>
           <SectionHeading
+            number="06"
             eyebrow="Credentials"
-            title="Certifications that support my engineering foundation."
+            title="Certifications behind the engineering."
           />
         </Reveal>
 
@@ -22,9 +23,14 @@ export default function Certifications() {
                   <Award size={22} aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-sm font-bold text-emerald-700 dark:text-emerald-300">{certificate.issuer}</p>
-                  <h3 className="mt-2 text-lg font-bold text-slate-950 dark:text-white">{certificate.title}</h3>
-                  <a href={certificate.verify} target="_blank" rel="noreferrer" className="project-link mt-4">
+                  <p className="cert-issuer">{certificate.issuer}</p>
+                  <h3 className="cert-title">{certificate.title}</h3>
+                  <a
+                    href={certificate.verify}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-link mt-4"
+                  >
                     Verify credential
                     <ExternalLink size={15} aria-hidden="true" />
                   </a>

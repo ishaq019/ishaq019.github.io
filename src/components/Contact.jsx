@@ -26,18 +26,20 @@ export default function Contact() {
       .filter((line) => line !== null)
       .join("\n");
 
-    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
+      form.subject,
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
-    <section id="contact" className="section-shell bg-[#122235] text-white">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
+    <section id="contact" className="section-shell section-alt">
+      <div className="wrap grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
           <SectionHeading
+            number="07"
             eyebrow="Contact"
-            title="Have a role or project in mind? Let’s talk."
-            description="The form opens your email app with a prepared message. You can also contact me directly using the details below."
-            tone="dark"
+            title="Have a role or project in mind?"
+            description="The form opens your email app with a prepared message. You can also reach me directly using the details below."
           />
 
           <div className="mt-8 space-y-4">
@@ -66,7 +68,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal>
-          <form onSubmit={handleSubmit} className="contact-form rounded-2xl bg-white p-6 text-slate-950 sm:p-8 dark:bg-slate-900 dark:text-white">
+          <form onSubmit={handleSubmit} className="contact-form p-6 sm:p-8">
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="form-field">
                 <span>Full name</span>

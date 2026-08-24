@@ -5,13 +5,14 @@ import { experience } from "../data/portfolio";
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-shell bg-white/70 dark:bg-slate-900/50">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <section id="experience" className="section-shell section-alt">
+      <div className="wrap">
         <Reveal>
           <SectionHeading
+            number="03"
             eyebrow="Experience"
-            title="Work Experience"
-            description="Hands-on work across MERN applications, Electron.js, testing, APIs, files, and connected hardware."
+            title="Where I've been building."
+            description="Hands-on work across MERN applications, Electron.js desktop builds, connected hardware, testing, and REST APIs."
           />
         </Reveal>
 
@@ -36,10 +37,10 @@ export default function Experience() {
 
                 <div className="experience-card">
                   <span className="card-shine" aria-hidden="true" />
-                  <p className="leading-7 text-slate-700 dark:text-slate-200">{item.description}</p>
+                  <p className="leading-7 text-[var(--text)]">{item.description}</p>
                   <ul className="mt-5 space-y-3">
                     {item.highlights.map((highlight) => (
-                      <li key={highlight} className="flex gap-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                      <li key={highlight} className="flex gap-3 text-sm leading-6 text-muted-ui">
                         <span className="experience-check">
                           <Check size={13} aria-hidden="true" />
                         </span>

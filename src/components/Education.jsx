@@ -5,13 +5,14 @@ import { education } from "../data/portfolio";
 
 export default function Education() {
   return (
-    <section id="education" className="section-shell">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <section id="education" className="section-shell section-alt">
+      <div className="wrap">
         <Reveal>
           <SectionHeading
+            number="05"
             eyebrow="Education"
-            title="Education"
-            description="My academic journey in computer science and engineering."
+            title="Academic foundation."
+            description="My journey through computer science and engineering."
           />
         </Reveal>
 

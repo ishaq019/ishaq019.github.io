@@ -1,6 +1,6 @@
-# Syed Ishaq — React Portfolio
+# Syed Ishaq — Portfolio
 
-A responsive portfolio rebuilt from the original HTML/CSS/JavaScript website using React, Tailwind CSS, reusable components, structured content data, and optimized project assets.
+A fast, single-page developer portfolio built with React, Vite, and Tailwind CSS. It uses a custom **"Signal on Ink"** dark design system (warm amber accent on a blue-black base), scroll-reveal and count-up animations, a Lenis smooth-scroll layer, and a spotlight for the flagship project, **CareerSetu** — including an animated ATS match-score gauge. All motion honors `prefers-reduced-motion`.
 
 ## Run locally
 
@@ -19,24 +19,35 @@ npm run preview
 ## Project structure
 
 ```text
-syed-ishaq-react-portfolio/
+ishaq019.github.io/
 ├── public/
 │   └── assets/
 │       ├── projects/          # Optimized WebP project images
 │       └── syed-ishaq-resume.pdf
 ├── src/
-│   ├── components/            # Reusable portfolio sections and UI
+│   ├── components/            # Portfolio sections and UI (Hero, About, Projects, …)
+│   │   ├── MatchGauge.jsx     # Animated ATS match-score dial (CareerSetu)
+│   │   └── BrandIcons.jsx     # Inline GitHub / LinkedIn / AI glyph SVGs
+│   ├── hooks/useCountUp.js    # In-view count-up animation hook
 │   ├── data/portfolio.js      # Personal content, links, and project data
 │   ├── App.jsx
-│   ├── index.css              # Tailwind import and shared design utilities
+│   ├── index.css              # "Signal on Ink" design system + Tailwind import
 │   └── main.jsx
 ├── index.html
 ├── package.json
 └── vite.config.js
 ```
 
+## Design system — Signal on Ink
+
+- **Base** `#0B0D12` ink · **raised surfaces** `#131722`
+- **Signal** `#F6B24A` (amber-gold) — primary accent
+- **Cool** `#8B93FF` (periwinkle) — reserved for the CareerSetu flagship
+- **Type** Space Grotesk (display) · Inter (body) · JetBrains Mono (labels, section numbers, chips)
+
 ## Notes
 
-- The contact form uses a `mailto:` action and opens the visitor's configured email application. A hosted form service or backend endpoint is required for silent web submission.
-- Replace `public/assets/syed-ishaq-resume.pdf` whenever the resume changes; the download link does not need a code update.
-- Portfolio content is maintained in `src/data/portfolio.js` so projects, skills, education, experience, and certifications can be updated without editing component markup.
+- Content is maintained in `src/data/portfolio.js` — projects, skills, education, experience, and certifications update without touching component markup. Mark a project `flagship: true` to render it in the spotlight (with `matchScore`, `tagline`, and `features`).
+- The contact form uses a `mailto:` action and opens the visitor's email app; a hosted form service is required for silent web submission.
+- Replace `public/assets/syed-ishaq-resume.pdf` when the résumé changes; the download link needs no code update.
+- Deployed to GitHub Pages (custom domain `syedishaq.me`) via `.github/workflows/deploy-frontend.yml`.

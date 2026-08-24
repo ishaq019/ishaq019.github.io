@@ -1,39 +1,86 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp, CodeXml, ExternalLink } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, CodeXml, ExternalLink } from "lucide-react";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import MatchGauge from "./MatchGauge";
+import { AiGlyph } from "./BrandIcons";
 import { projects } from "../data/portfolio";
+
+function FlagshipSpotlight({ project }) {
+  return (
+    <div className="flagship">
+      <div className="flagship-inner">
+        <span className="card-shine" aria-hidden="true" />
+        <div className="flagship-grid">
+          <div>
+            <span className="flagship-badge">
+              <AiGlyph size={13} />
+              Flagship · Live
+            </span>
+            <h3 className="flagship-title">{project.title}</h3>
+            <p className="flagship-tagline">{project.tagline}</p>
+
+            <ul className="flagship-features">
+              {project.features.map((feature) => (
+                <li key={feature} className="flagship-feature">
+                  <Check size={16} aria-hidden="true" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+
+            <ul className="flagship-stack" aria-label={`${project.title} technologies`}>
+              {project.technologies.map((tech) => (
+                <li key={tech} className="tech-chip">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flagship-actions">
+              <a href={project.live} target="_blank" rel="noreferrer" className="primary-button">
+                <ExternalLink size={17} aria-hidden="true" />
+                Open live app
+              </a>
+              <a href={project.source} target="_blank" rel="noreferrer" className="secondary-button">
+                <CodeXml size={17} aria-hidden="true" />
+                Source code
+              </a>
+            </div>
+          </div>
+
+          <MatchGauge score={project.matchScore} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ProjectCard({ project }) {
   return (
-    <article className="surface-card project-card group flex h-full flex-col overflow-hidden">
-      <div className="aspect-[16/9] overflow-hidden border-b border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-950">
+    <article className="surface-card project-card group">
+      <div className="project-media">
         <img
           src={project.image}
           alt={`Interface preview of ${project.title}`}
-          className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.03]"
           loading="lazy"
           decoding="async"
         />
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-xl font-bold leading-7 text-slate-950 dark:text-white">{project.title}</h3>
-          {project.featured ? (
-            <span className="shrink-0 rounded-md bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200">
-              Featured
-            </span>
-          ) : null}
+          <h3 className="project-title">{project.title}</h3>
+          {project.featured ? <span className="project-badge">Featured</span> : null}
         </div>
-        <p className="mt-4 flex-1 text-sm leading-6 text-slate-600 dark:text-slate-300">{project.description}</p>
+        <p className="project-desc">{project.description}</p>
         <ul className="mt-5 flex flex-wrap gap-2" aria-label={`${project.title} technologies`}>
           {project.technologies.map((technology) => (
-            <li key={technology} className="rounded-md border border-slate-200 px-2.5 py-1 text-xs font-bold text-slate-500 dark:border-slate-700 dark:text-slate-400">
+            <li key={technology} className="tech-chip">
               {technology}
             </li>
           ))}
         </ul>
-        <div className="mt-6 flex flex-wrap gap-3 border-t border-slate-100 pt-5 dark:border-slate-800">
+        <div className="mt-6 flex flex-wrap gap-5 border-t border-white/[0.06] pt-5">
           <a href={project.source} target="_blank" rel="noreferrer" className="project-link">
             <CodeXml size={17} aria-hidden="true" />
             Source code
@@ -52,20 +99,29 @@ function ProjectCard({ project }) {
 
 export default function Projects() {
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 4);
+  const flagship = projects.find((project) => project.flagship);
+  const rest = projects.filter((project) => !project.flagship);
+  const visibleProjects = showAll ? rest : rest.slice(0, 4);
 
   return (
-    <section id="projects" className="section-shell bg-white/70 dark:bg-slate-900/50">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+    <section id="projects" className="section-shell">
+      <div className="wrap">
         <Reveal>
           <SectionHeading
+            number="04"
             eyebrow="Projects"
             title="Selected work across web, desktop, AI, and data."
-            description="Every project below comes from the original portfolio. Descriptions were tightened for clarity without inventing outcomes."
+            description="Starting with the flagship, then a broader set spanning full-stack apps, machine learning, and analytics."
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        {flagship ? (
+          <Reveal className="mt-12">
+            <FlagshipSpotlight project={flagship} />
+          </Reveal>
+        ) : null}
+
+        <div className="mt-6 grid gap-5 lg:grid-cols-2">
           {visibleProjects.map((project, index) => (
             <Reveal key={project.title} delay={(index % 2) * 65}>
               <ProjectCard project={project} />
@@ -81,7 +137,7 @@ export default function Projects() {
             aria-expanded={showAll}
           >
             {showAll ? <ChevronUp size={18} aria-hidden="true" /> : <ChevronDown size={18} aria-hidden="true" />}
-            {showAll ? "Show fewer projects" : `Show all ${projects.length} projects`}
+            {showAll ? "Show fewer projects" : `Show all ${rest.length} projects`}
           </button>
         </div>
       </div>

@@ -13,3 +13,13 @@ export function LinkedInIcon({ size = 20, ...props }) {
     </svg>
   );
 }
+
+export function AiGlyph({ size = 22, ...props }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 2.4l1.95 4.9 4.9 1.95-4.9 1.95L12 16.05l-1.95-4.85-4.9-1.95 4.9-1.95z" />
+      <circle cx="18.9" cy="18.6" r="1.7" />
+      <circle cx="5.1" cy="16.9" r="1.15" />
+    </svg>
+  );
+}

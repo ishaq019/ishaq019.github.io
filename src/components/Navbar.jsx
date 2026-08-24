@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import { navigation, profile } from "../data/portfolio";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const sectionIds = navigation.map(({ href }) => href.slice(1));
@@ -26,14 +34,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-50 border-b backdrop-blur-xl">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-10">
-        <a
-          href="#home"
-          className="font-serif text-3xl tracking-[-0.04em] text-slate-950 transition-colors hover:text-emerald-700 dark:text-white dark:hover:text-emerald-300"
-          onClick={() => setMenuOpen(false)}
-        >
-          {profile.name}
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="wrap flex h-20 items-center justify-between">
+        <a href="#home" className="brand" onClick={() => setMenuOpen(false)}>
+          Syed <span>Ishaq</span>
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
@@ -43,11 +47,7 @@ export default function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`nav-link text-sm font-semibold ${
-                  isActive
-                    ? "text-emerald-700 dark:text-emerald-300"
-                    : "text-slate-700 dark:text-slate-200"
-                }`}
+                className="nav-link"
                 aria-current={isActive ? "page" : undefined}
               >
                 {item.label}
@@ -56,7 +56,16 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <a
+            href={profile.resume}
+            className="nav-cta hidden sm:inline-flex"
+            download
+          >
+            <Download size={15} aria-hidden="true" />
+            Résumé
+          </a>
+
           <button
             type="button"
             className="icon-button lg:hidden"
@@ -72,20 +81,18 @@ export default function Navbar() {
 
       <nav
         id="mobile-navigation"
-        className={`mobile-navigation grid overflow-hidden border-t px-5 lg:hidden ${
-          menuOpen ? "is-open" : ""
-        }`}
+        className={`mobile-navigation lg:hidden ${menuOpen ? "is-open" : ""}`}
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
       >
-        <div className="grid py-3">
+        <div className="wrap grid gap-1 py-4">
           {navigation.map((item) => {
             const isActive = activeSection === item.href.slice(1);
             return (
               <a
                 key={item.href}
                 href={item.href}
-                className="mobile-nav-link rounded-lg px-3 py-3 text-base font-semibold"
+                className="mobile-nav-link px-3 py-3"
                 onClick={() => setMenuOpen(false)}
                 aria-current={isActive ? "page" : undefined}
                 tabIndex={menuOpen ? 0 : -1}
@@ -94,6 +101,15 @@ export default function Navbar() {
               </a>
             );
           })}
+          <a
+            href={profile.resume}
+            className="mobile-nav-link px-3 py-3 sm:hidden"
+            download
+            onClick={() => setMenuOpen(false)}
+            tabIndex={menuOpen ? 0 : -1}
+          >
+            Résumé
+          </a>
         </div>
       </nav>
     </header>

@@ -3,8 +3,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
+// The site is dark-only; the class keeps any Tailwind `dark:` variant resolving.
 document.documentElement.classList.add("dark");
-document.documentElement.style.colorScheme = "dark";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
